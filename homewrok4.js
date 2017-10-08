@@ -1,10 +1,71 @@
-debugger;
-const fibo = function(num) {
-  if (num <= 1) {
-    return 1;
+//#5the checkerboard
+const line = function(n,achar, bchar) {
+  if (n <= 0) {
+    return "";
   }
-    console.log(num)
-    return fibo(num - 1) + fibo(num - 2);
+  return achar + bchar + line(n - 1, achar, bchar);
 };
 
-fibo(7);
+const board = function(n, length) {
+  if (n <= 0) {
+    return ""; 
+  } else if (n === 1) {
+    console.log(line(length, '*', ' '));
+  } else {
+  console.log(line(length, '*', ' '));
+  console.log(line(length, ' ', '*'));
+  return board(n-2, length);
+  }
+};
+
+const checkerboard = function(n) {
+  board(n, n);
+};
+
+
+
+//#2the Upside-Down Triangle
+const print = function(num, symbol) {
+  if(num <= 0){
+    return "";
+  } 
+  return symbol + print(num - 1, symbol);
+};
+
+const typeOfLine = function(spaceNumber, starNumber) {
+  if (starNumber <= 0){
+    return "";
+  }
+  console.log(print(spaceNumber, " ") + print(starNumber, "*"));
+  return typeOfLine(spaceNumber + 1, starNumber - 2);
+};
+
+const triangleStars = function(n) {
+  typeOfLine(0, 2*n-1);
+};
+
+
+
+//#3the base to the power of n
+const pow = function(base, n) {
+  if (n < 1) {
+    return 1;
+  }
+  
+  return base * pow(base, n-1);
+};
+
+
+
+//#4the String reversor
+const reversetool = function(str, index) {
+  if (index < 0) {
+    return "";
+  }
+  
+  return str[index] + reversetool(str, index - 1);
+};
+
+const reverse = function(str) {
+  return reversetool(str, str.length-1);
+};
